@@ -1,15 +1,17 @@
 php_variations:
   - name: cli
     default: true
-  - name: fpm
-  - name: fpm-apache
+  #- name: fpm
+  #- name: fpm-apache
     supported_os: # Open a discussion on serversideup/php if you want to see Alpine support for fpm-apache (https://github.com/serversideup/docker-php/discussions/66)
       - bullseye
       - bookworm
       - trixie
+      - buster
   - name: fpm-nginx
-  - name: frankenphp
+# - name: frankenphp
     excluded_minor_versions:
+      - "7.0"
       - "7.4"
       - "8.0"
       - "8.1"
@@ -18,9 +20,13 @@ php_variations:
 php_versions:
   - major: "7"
     minor_versions:
+      - minor: "7.0"
+        base_os:
+          - name: buster
+        patch_versions:
+          - 7.0.33
       - minor: "7.4"
         base_os:
-          - name: alpine3.16
           - name: bullseye
         patch_versions:
           - 7.4.33
@@ -28,84 +34,48 @@ php_versions:
     minor_versions:
       - minor: "8.0"
         base_os:
-          - name: alpine3.16
           - name: bullseye
         patch_versions:
           - 8.0.30
       - minor: "8.1"
         base_os:
-          - name: alpine3.21
           - name: bookworm
           - name: trixie
         patch_versions:
           # - 8.1.28 # Pull latest from Official PHP source
       - minor: "8.2"
         base_os:
-          - name: alpine3.21
-          - name: alpine3.22
           - name: bookworm
           - name: trixie
         patch_versions:
         #   - 8.2.18 # Pull latest from Official PHP source
       - minor: "8.3"
         base_os:
-          - name: alpine3.21
-          - name: alpine3.22
           - name: bookworm
           - name: trixie
         patch_versions:
           # - 8.3.6 # Pull latest from Official PHP source
       - minor: "8.4"
         base_os:
-          - name: alpine3.21
-          - name: alpine3.22
           - name: bookworm
           - name: trixie
         patch_versions:
         #   - 8.4.1 # Pull latest from Official PHP source
       - minor: "8.5"
         base_os:
-          - name: alpine3.21
-          - name: alpine3.22
           - name: bookworm
           - name: trixie
         patch_versions:
         #   - 8.5.0 # Pull latest from Official PHP source
 
 operating_systems:
-  - family: alpine
-    versions:
-      - name: "Alpine 3.16"
-        version: alpine3.16
-        number: 3.16
-        nginx_version: 1.26.1-r2
-      - name: "Alpine 3.17"
-        version: alpine3.17
-        number: 3.17
-        nginx_version: 1.26.2-r1
-      - name: "Alpine 3.18"
-        version: alpine3.18
-        number: 3.18
-        nginx_version: 1.28.0-r1
-      - name: "Alpine 3.19"
-        version: alpine3.19
-        number: 3.19
-        nginx_version: 1.28.0-r1
-      - name: "Alpine 3.20"
-        version: alpine3.20
-        number: 3.20
-        nginx_version: 1.28.0-r1
-      - name: "Alpine 3.21"
-        version: alpine3.21
-        number: 3.21
-        nginx_version: 1.28.0-r1
-      - name: "Alpine 3.22"
-        version: alpine3.22
-        number: 3.22
-        nginx_version: 1.28.0-r1
   - family: debian
     default: true
     versions:
+      - name: "Debian Buster"
+        version: buster
+        number: 10
+        nginx_version: 1.28.0-1~buster
       - name: "Debian Bullseye"
         version: bullseye
         number: 11
