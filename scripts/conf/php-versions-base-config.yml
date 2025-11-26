@@ -75,7 +75,7 @@ operating_systems:
       - name: "Debian Buster"
         version: buster
         number: 10
-        nginx_version: 1.28.0-1~buster
+        nginx_version: 1.20.2-1~buster
       - name: "Debian Bullseye"
         version: bullseye
         number: 11
